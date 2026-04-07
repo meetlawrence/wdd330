@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineVibe | Your Ultimate Movie Experience</title>
+    <meta name="description"
+        content="CineVibe: The fastest way to get the latest movies and TV shows delivered to your doorstep.">
+    <meta name="author" content="Lawrence Okon">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap"
+        rel="stylesheet">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://meetlawrence.github.io/wdd330/cinevibe/index.html">
+    <meta property="og:title" content="CineVibe | Your Ultimate Movie Experience">
+    <meta property="og:description"
+        content="CineVibe: The fastest way to get the latest movies and TV shows delivered to your doorstep.">
+    <meta property="og:image" content="https://meetlawrence.github.io/wdd330/cinevibe/images/icons/cinevibe.svg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://meetlawrence.github.io/wdd330/cinevibe/index.html">
+    <meta name="twitter:title" content="CineVibe | Your Ultimate Movie Experience">
+    <meta name="twitter:description"
+        content="CineVibe: The fastest way to get the latest movies and TV shows delivered to your doorstep.">
+    <meta name="twitter:image" content="https://meetlawrence.github.io/wdd330/project/images/icons/cinevibe.svg">
+
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/base-large.css">
+    <link rel="stylesheet" href="styles/animation.css">
+
+</head>
+
+<body>
+    <header id="header">
+        <div class="header-container">
+            <div class="header-left">
+                <div class="logo-icon">
+                    <img class="icon-small" src="assets/images/cinevibe.svg" fetchpriority="high" alt="AbegChop Logo">
+                </div>
+                <div class="logo-text">
+                    <h1>CineVibe</h1>
+                    <div class="tagline">
+                        <span>Discover trending movies</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="header-right">
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="Search for movies..." class="search-input">
+                    <button class="search-button" aria-label="Search">
+                        <svg class="icon">
+                            <use href="assets/icons/sprites.svg#icon-search"></use>
+                        </svg>
+                        <!--  -->
+                    </button>
+                </div>
+                <button class="filter-button" aria-label="Filter">
+                    <svg class="icon">
+                        <use href="assets/icons/sprites.svg#icon-filter"></use>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        
+        <section class="body-header">
+            <h2>Trending Now</h2>
+            <p>6 movies currently trending</p>
+        </section>
+
+        <section>
+            <div id="movie-grid">
+            </div>
+        </section>
+
+        <section>
+            <div>
+                <svg class="icon">
+                    <use href="images/icons/sprites.svg#icon-movie"></use>
+                </svg>
+                <span>Disclaimer</span>
+            </div>
+        </section>
+
+        <aside id="filter-panel">
+            
+        </aside>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <div class="logo-icon">
+                            <img class="icon-small" src="assets/images/cinevibe.svg" alt="CineVibe Logo">
+                        </div>
+                        <h3>CineVibe</h3>
+                    </div>
+                    <p class="footer-desc">Your ultimate companion for discovering trending movies, finding trailers and joining the conversation with film enthusiasts worldwide.</p>
+                    
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Trending Movies</a></li>
+                        <li><a href="#">Popular</a></li>
+                        <li><a href="#">Upcoming</a></li>
+                        <li><a href="#">Top Rated</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-title">Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://www.themoviedb.org/" target="_blank">TMDB API</a></li>
+                        <li><a href="https://developers.google.com/youtube/v3" target="_blank">YouTube API</a></li>
+                        <li><a href="faq.html" target="_blank">FAQ</a></li>
+                        <li><a href="https://www.themoviedb.org/privacy-policy" target="_blank">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-title">Connect</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html" target="_blank">About Us</a></li>
+                        <li><a href="#" target="_blank">Terms of Service</a></li>
+                        <li><a href="https://meetlawrence.github.io/wdd231/index1.html" target="_blank">Lawrence Okon</a></li>
+                        <li>
+                            <svg class="icon">
+                                <use href="assets/icons/sprites.svg#icon-mail"></use>
+                            </svg>
+                            <a href="#" target="_blank">Contact</a>
+                        </li>
+                    </ul>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <svg class="icon">
+                                <use href="assets/icons/sprites.svg#icon-facebook"></use>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <svg class="icon">
+                                <use href="assets/icons/sprites.svg#icon-instagram"></use>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <svg class="icon">
+                                <use href="assets/icons/sprites.svg#icon-twitter"></use>
+                            </svg>
+                        </a>
+                    </div>
+                    
+                </div>
+
+            </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 CineVibe. All rights reserved. Movie data provided by <a href="https://www.themoviedb.org/" target="_blank">TMDB</a>.</p>
+        </div>
+    </footer>
+
+    <dialog id="mydialog">
+        <div class="modal-header">
+            <h2 id="mytitle">Vendor Name</h2>
+            <button id="closeModal" aria-label="Close Modal">×</button>
+        </div>
+        <div id="myinfo"></div>
+    </dialog>
+</body>
+
+</html>
