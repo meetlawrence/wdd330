@@ -35,6 +35,7 @@
     <link rel="stylesheet" href="styles/base-large.css">
     <link rel="stylesheet" href="styles/animation.css">
 
+    <script src="scripts/main.js" type="module"></script>
 </head>
 
 <body>
@@ -74,8 +75,8 @@
     <main>
         
         <section class="body-header">
-            <h2>Trending Now</h2>
-            <p>6 movies currently trending</p>
+            <h2 class="body-header-title">Trending Now</h2>
+            <p id="movie-count">Loading trending movies...</p>
         </section>
 
         <section>
@@ -84,17 +85,13 @@
         </section>
 
         <section>
-            <div>
+            <div class="disclaimer-card">
                 <svg class="icon">
-                    <use href="images/icons/sprites.svg#icon-movie"></use>
+                    <use href="images/icons/sprites.icon-disclaimer"></use>
                 </svg>
                 <span>Disclaimer</span>
             </div>
         </section>
-
-        <aside id="filter-panel">
-            
-        </aside>
     </main>
 
     <footer class="footer">

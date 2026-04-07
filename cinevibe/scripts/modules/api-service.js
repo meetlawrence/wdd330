@@ -21,3 +21,5 @@ export const MovieAPI = {
     return data.results;
   }
 };
+
+console.log("I am alive! My path is correct.");

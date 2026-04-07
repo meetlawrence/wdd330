@@ -7,10 +7,8 @@
 
     .logo-text {
         display: block;
-        /* Shows "AbegChop" and "Calabar Campus" */
     }
 
-    /* Hide the mobile-only Menu Button */
     .menu-button {
         display: none;
     }

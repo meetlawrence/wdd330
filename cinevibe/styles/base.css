@@ -197,7 +197,7 @@ body {
     transform: translateY(-50%);
     background: linear-gradient(to right, var(--primary-red-500), var(--primary-pink-400));
     color: var(--text-gray-300);
-    padding: 0.75rem 2rem;
+    padding: 0.75rem 1rem;
     border-radius: 0.75rem;
     border: none;
     cursor: pointer;
@@ -214,9 +214,7 @@ body {
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
 }
 
-.search-text {
-    display: none;
-}
+
 
 .filter-button {
     background: var(--background-slate-900);
@@ -241,7 +239,16 @@ body {
 }
 
 .body-header {
-    margin-bottom: 1rem;
+    margin: 2rem 1rem;
+    color: var(--text-gray-300);
+}
+
+.body-header-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    font-family: var(--heading-font);
+    color: var(--text-white);
+
 }
 
 main {
@@ -250,6 +257,45 @@ main {
     margin: 0 auto;
     animation: fadeIn 0.8s both;
 }
+/* styles/base.css */
+
+#movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.movie-card {
+    background-color: var(--background-slate-800);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s ease;
+    cursor: pointer;
+}
+
+.movie-card:hover {
+    transform: scale(1.03);
+}
+
+.movie-card img {
+    width: 100%;
+    aspect-ratio: 2/3;
+    object-fit: cover;
+}
+
+.card-info {
+    padding: 12px;
+}
+
+.card-info h3 {
+    font-size: 1rem;
+    margin: 0 0 8px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 
 /* =========================================
    FOOTER STYLES (Accessible & Liquid Glass)
