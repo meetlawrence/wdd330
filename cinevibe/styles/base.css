@@ -209,14 +209,14 @@ body {
     transition: all 0.3s;
 }
 
-.search-button:hover {
+.search-button:hover{
     transform: translateY(-50%) scale(1.05);
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
 }
 
 
 
-.filter-button {
+.filter-button, .disclaimer-card {
     background: var(--background-slate-900);
     color: var(--text-gray-300);
     border: 2px solid var(--background-slate-800);
@@ -289,6 +289,8 @@ main {
 }
 
 .card-info h3 {
+    color: var(--text-white);
+    font-weight: 900;
     font-size: 1rem;
     margin: 0 0 8px 0;
     white-space: nowrap;
@@ -296,7 +298,16 @@ main {
     text-overflow: ellipsis;
 }
 
+.card-info p {
+    color: var(--text-gray-300);
+    font-size: 0.875rem;
+    margin: 0;
+}
 
+.disclaimer-card {
+    box-shadow: 0 0 0 4px rgba(17, 17, 17, 0.2);
+    margin: 2rem 0;
+}
 /* =========================================
    FOOTER STYLES (Accessible & Liquid Glass)
    ========================================= */
