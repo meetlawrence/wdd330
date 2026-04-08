@@ -19,7 +19,16 @@ export const MovieAPI = {
     const response = await fetch(url);
     const data = await response.json();
     return data.results;
+  },
+
+  async fetchMovieDetails(movieId) {
+    try {
+      const response = await fetch(
+        `${BASE_URL}/movie/${movieId}?api_key=${API_KEY}&append_to_response=videos`
+      );
+      return await response.json();
+    } catch (error) {
+      console.error("Error fetching details:", error);
+    }
   }
 };
-
-console.log("I am alive! My path is correct.");
