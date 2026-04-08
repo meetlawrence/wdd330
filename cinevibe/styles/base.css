@@ -22,6 +22,11 @@
 
     /* Shawow */
     --shadow: 0 1px 2px rgba(0, 0, 0, .05), 0 6px 18px rgba(0, 0, 0, .06);
+
+    --border: 1px solid rgba(255, 255, 255, 0.1);
+    --border-radius: 16px;
+
+    --transform: scale(1.03);
 }
 
 /* RESET & BASE */
@@ -170,17 +175,17 @@ body {
 .search-input {
     width: 100%;
     padding: 1rem 4rem;
-    border-radius: 1rem;
+    border-radius: var(--border-radius);
     font-size: 1.125rem;
-    border: 2px solid;
+    border: var(--border);
     box-shadow: 0 20px 25px -5px var(--shadow);
     transition: all 0.3s;
 }
 
 
-.search-input, .filter-box {
+.search-input{
     background: var(--background-slate-900);
-    border-color: var(--background-slate-800);
+    border: var(--border);
     color: white;
 }
 
@@ -220,14 +225,13 @@ body {
 }
 
 
-
 .filter-button, .disclaimer-card {
     background: var(--background-slate-900);
     color: var(--text-gray-300);
-    border: 2px solid var(--background-slate-800);
+    border: var(--border);
     cursor: pointer;
     padding: 0.75rem;
-    border-radius: 0.75rem;
+    border-radius: var(--border-radius);
     transition: all 0.3s;
 
 }
@@ -263,53 +267,111 @@ main {
     animation: fadeIn 0.8s both;
 }
 
-
-
+/* Container for the Grid */
 #movie-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
-    padding: 20px 0;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 24px;
+    padding: 20px;
 }
 
 .movie-card {
-    background-color: var(--background-slate-800);
+    position: relative;
+    /* Necessary for absolute positioning of badge */
+    background: #1e293b;
     border-radius: 12px;
     overflow: hidden;
-    transition: transform 0.2s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
-    box-shadow:var(--shadow);
 }
 
 .movie-card:hover {
-    transform: scale(1.03);
-    box-shadow: 0 0 0 4px rgba(7, 162, 209, 0.06);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
 }
 
+/* Trending Badge - Top Right */
+.trending-badge {
+    color: var(--text-white);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 10;
+    backdrop-filter: blur(4px);
+    padding: 4px 10px;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Style the icon container */
+.trending-badge div:first-child {
+    display: flex;
+    align-items: center;
+}
+
+.icon-trending {
+    width: 14px;
+    height: 14px;
+    stroke: #ffffff;
+    /* Sets the SVG color */
+}
+
+/* Style the text container */
+.trending-badge p {
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+/* Poster Image */
 .movie-card img {
     width: 100%;
-    aspect-ratio: 2/3;
+    aspect-ratio: 2 / 3;
     object-fit: cover;
+    display: block;
 }
 
+/* Info Section with Gradient Overlay */
 .card-info {
-    padding: 12px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 12px 12px;
+    /* Gradient makes text readable regardless of poster color */
+    background: linear-gradient(to top, rgba(15, 23, 42, 1) 0%, rgba(15, 23, 42, 0.8) 50%, transparent 100%);
+    color: white;
 }
 
 .card-info h3 {
-    color: var(--text-white);
-    font-weight: 900;
-    font-size: 1rem;
-    margin: 0 0 8px 0;
+    font-size: 0.95rem;
+    margin: 0 0 6px 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-.card-info p {
-    color: var(--text-gray-300);
-    font-size: 0.875rem;
-    margin: 0;
+.meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: #cbd5e1;
+    /* Slate-300 */
+}
+
+.icon-star {
+    width: 14px;
+    height: 14px;
+    fill: #eab308;
+    /* Gold/Yellow */
+    margin-right: 4px;
+    vertical-align: middle;
 }
 
 .disclaimer-card {
@@ -355,14 +417,6 @@ main {
     overflow: hidden;
 }
 
-.video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
 .modal-header {
     padding: 20px;
     display: flex;
@@ -378,11 +432,11 @@ main {
 .video-wrapper {
     position: relative;
     padding-bottom: 56.25%;
-    /* 16:9 ratio */
     height: 0;
     margin-bottom: 20px;
-    background: #000;
+    background: #000;       
 }
+
 
 .video-wrapper iframe {
     position: absolute;
@@ -390,7 +444,7 @@ main {
     left: 0;
     width: 100%;
     height: 100%;
-    border-radius: 8px;
+    /* border-radius: 8px; */
 }
 
 dialog::backdrop {
@@ -414,12 +468,16 @@ dialog::backdrop {
 
 .close-btn{
     background: rgba(15, 23, 42, 0.95);
-
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    /* border: none; */
-    padding: 5px 6px;
-    border-radius: 50%;
+    border: var(--border);
+    padding: 5px ;
+    border-radius: var(--border-radius);
+    display: flex;
     color: rgba(255, 255, 255, 0.1);
+}
+
+.close-btn:hover {
+    transform: var(--transform);
+    color: rgba(255, 255, 255, 0.3);
 }
 
 .modal-rating {
