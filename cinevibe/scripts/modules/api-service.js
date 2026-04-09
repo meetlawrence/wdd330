@@ -30,5 +30,16 @@ export const MovieAPI = {
     } catch (error) {
       console.error("Error fetching details:", error);
     }
+  },
+
+  async fetchGenres() {
+    try {
+      const response = await fetch(`${BASE_URL}/genre/movie/list?api_key=${API_KEY}`);
+      const data = await response.json();
+      return data.genres;
+    } catch (error) {
+      console.error("Error fetching genres:", error);
+      return [];
+    }
   }
 };
