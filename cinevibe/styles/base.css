@@ -127,8 +127,9 @@ body {
     display: flex;
     align-items: center;
     gap: 0.25rem;
-    font-size: 0.75rem;
+    font-size: 1rem;
     color: #9ca3af;
+    max-width: 200px;
 }
 
 /* ==========================================================================
@@ -368,7 +369,7 @@ main {
     fill: var(--primary-red-500);
 }
 
-.disclaimer-card a {
+.disclaimer-card a, .footer-bottom a {
     color: var(--primary-red-500);
     text-decoration: none;
     font-weight: 500;
@@ -454,6 +455,11 @@ dialog::backdrop {
     color: var(--accent-yellow-500);
 }
 
+.rating-text {
+    font-size: 0.75rem;
+    color: var(--text-gray-300);
+}
+
 .modal-actions {
     display: flex;
     gap: 1rem;
@@ -468,11 +474,6 @@ dialog::backdrop {
     display: flex;
     color: rgba(255, 255, 255, 0.1);
     cursor: pointer;
-}
-
-.close-btn:hover {
-    transform: var(--transform);
-    color: rgba(255, 255, 255, 0.3);
 }
 
 .btn-primary,

@@ -19,11 +19,14 @@ export function createMovieCard(movie) {
       <div class="card-info movie-card">
         <h3>${movie.title}</h3>
         <div class="meta">
-          <span class="rating">
+          <span class="modal-rating">
             <svg class="icon-star"><use href="assets/icons/sprites.svg#icon-rating"></use></svg>
             ${movie.vote_average.toFixed(1)}
           </span>
-          <span class="year">${movie.release_date?.split('-')[0] || 'N/A'}</span>
+          <span class="year">
+            <svg class="icon-star"><use href="assets/icons/sprites.svg#icon-calendar"></use></svg>
+            ${movie.release_date?.split('-')[0] || 'N/A'}
+          </span>
         </div>
       </div>
     </div>

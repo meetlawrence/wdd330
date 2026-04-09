@@ -1,5 +1,29 @@
-/* Navigation for Wide Screens */
+/* ==========================================================================
+   NAVIGATION & LAYOUT FOR WIDE SCREENS (1024px+)
+   ========================================================================== */
 @media (min-width: 1024px) {
+
+    /* --- Header & Layout --- */
+    .header-container {
+        flex-direction: row;
+        padding: 1rem 1.5rem;
+    }
+
+    .header-left {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .header-right {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        margin-left: auto;
+        /* Pushes Cart, Theme, and Menu buttons to the right */
+    }
+
+    /* --- Logo Styles --- */
     .logo-icon {
         width: 70px;
         height: 70px;
@@ -9,31 +33,20 @@
         display: block;
     }
 
+    .logo-text .tagline {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        font-size: 1rem;
+        color: #9ca3af;
+        max-width: none;
+    }
+
     .logo-icon:hover {
         transform: scale(1.1);
     }
 
-    .header-container {
-        flex-direction: row;
-        padding: 1rem 1.5rem;
-    }
-
-    /* Space out the header-right elements */
-    /* Contains the logo and location */
-    .header-left {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-    }
-
-    /* Contains the Cart, Theme, and Menu buttons */
-    .header-right {
-        display: flex;
-        align-items: center;
-        gap: 2rem;
-        margin-left: auto;
-    }
-
+    /* --- Interaction & Hover Effects --- */
     .filter-button:hover {
         background: var(--background-slate-800);
         border-color: var(--primary-red-500);
@@ -46,15 +59,15 @@
         box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
     }
 
-
+    /* --- Footer Styles --- */
     .footer-logo:hover .footer-logo-icon {
         transform: rotate(360deg) scale(1.1);
     }
 
     .social-link:hover {
-        transform: scale(1.15) translateY(-4px);
         background: rgba(255, 255, 255, 0.2);
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        transform: scale(1.15) translateY(-4px);
     }
 
     .footer-links li:hover {

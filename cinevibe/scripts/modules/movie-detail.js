@@ -21,7 +21,7 @@ export function renderModalContent(movie, dialogElement) {
             <div class="stats-row">
                 <span class="stat modal-rating">
                     <svg class="icon-small"><use href="assets/icons/sprites.svg#icon-rating"></use></svg>
-                    ${movie.vote_average.toFixed(1)}
+                    ${movie.vote_average.toFixed(1)} <div class="rating-text">/ 10</div>
                 </span>
                 <span class="stat">
                     <svg class="icon-small"><use href="assets/icons/sprites.svg#icon-clock"></use></svg>
