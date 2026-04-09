@@ -8,6 +8,11 @@ export function renderModalContent(movie, dialogElement) {
         (vid) => vid.type === "Trailer" && vid.site === "YouTube"
     );
 
+    // Get the certification (e.g., PG-13, R) from release_dates data
+    const countryData = movie.release_dates?.results.find(r => r.iso_3166_1 === "US") 
+                    || movie.release_dates?.results[0];
+    const certification = countryData?.release_dates.find(rd => rd.certification !== "")?.certification || "NR";
+
     title.textContent = movie.title;
 
     info.innerHTML = `
@@ -19,6 +24,7 @@ export function renderModalContent(movie, dialogElement) {
         </div>
         <div class="modal-details">
             <div class="stats-row">
+                <span class="certification-badge">${certification}</span>
                 <span class="stat modal-rating">
                     <svg class="icon-small"><use href="assets/icons/sprites.svg#icon-rating"></use></svg>
                     ${movie.vote_average.toFixed(1)} <div class="rating-text">/ 10</div>
@@ -32,7 +38,13 @@ export function renderModalContent(movie, dialogElement) {
                     ${movie.release_date.split('-')[0]}
                 </span>
             </div>
+
+            <div class="modal-genres">
+                ${movie.genres.map(g => `<span class="genre-tag">${g.name}</span>`).join('')}
+            </div>
+
             <p class="overview">${movie.overview}</p>
+            
             <div class="modal-actions">
                 <a href="https://www.imdb.com/title/${movie.imdb_id}" target="_blank" class="btn-primary">View IMDb</a>
                 <a href="https://www.reddit.com/r/movies/search/?q=${encodeURIComponent(movie.title)}" target="_blank" class="btn-secondary">Discuss on Reddit</a>

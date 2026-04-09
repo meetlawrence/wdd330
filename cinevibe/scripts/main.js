@@ -1,6 +1,8 @@
 import { MovieAPI } from './modules/api-service.js';
 import { createMovieCard } from './modules/movie-card.js';
 import { renderModalContent } from './modules/movie-detail.js';
+import { FilterService } from './modules/filter-service.js';
+import { FilterPanel } from './modules/filter-panel.js';
 
 // --- DOM Elements ---
 const movieGrid = document.getElementById('movie-grid');
@@ -12,62 +14,57 @@ const searchInput = document.getElementById('search-input');
 const movieCount = document.getElementById('movie-count');
 const bodyHeaderTitle = document.querySelector('.body-header-title');
 
-// --- Global State ---
-let allMovies = []; 
+let allMovies = [];
 
 async function init() {
-    try {
-        // 1. Setup Sidebar Overlay
-        let overlay = document.querySelector('.sidebar-overlay');
-        if (!overlay) {
-            overlay = document.createElement('div');
-            overlay.className = 'sidebar-overlay';
-            document.body.appendChild(overlay);
-        }
+    // 1. Setup Overlay
+    let overlay = document.querySelector('.sidebar-overlay') || createOverlay();
 
-        // 2. Fetch Initial Data (Trending + Genres)
+    try {
+        // 2. Load Data
         const [movies, genres] = await Promise.all([
-            MovieAPI.fetchTrending(),
+            MovieAPI.fetchTrending(), 
             MovieAPI.fetchGenres()
         ]);
-
         allMovies = movies;
 
-        // 3. Initial UI Render
-        renderGenres(genres);
+        // 3. Initial Render
+        FilterPanel.render(filterContainer, genres);
         updateUI(allMovies, "Trending Now");
 
         // --- EVENT LISTENERS ---
 
-        // A. Toggle Sidebar
-        filterBtn.addEventListener('click', () => {
-            filterContainer.classList.add('active');
-            overlay.classList.add('active');
-        });
+        // A. Sidebar Toggle
+        filterBtn.addEventListener('click', () => FilterPanel.toggle(filterContainer, overlay, true));
+        overlay.addEventListener('click', () => FilterPanel.toggle(filterContainer, overlay, false));
 
-        // B. Close Sidebar (Overlay Click)
-        overlay.addEventListener('click', closeSidebar);
-
-        // C. Filtering Logic (Sidebar Chips)
+        // B. Filtering & Sorting Logic
         filterContainer.addEventListener('click', (e) => {
             const chip = e.target.closest('.filter-chip');
             if (!chip) return;
 
-            // Highlight Active Chip
-            document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active-chip'));
-            chip.classList.add('active-chip');
+            let filteredList = [...allMovies];
+            let title = "Trending Now";
+            const type = chip.dataset.type;
+            const id = chip.dataset.id;
 
-            // Apply Filter
-            const genreId = chip.dataset.id;
-            const filtered = (genreId === 'all') 
-                ? allMovies 
-                : allMovies.filter(m => m.genre_ids.includes(Number(genreId)));
-            
-            updateUI(filtered, genreId === 'all' ? "Trending Now" : `Genre: ${chip.textContent}`);
-            closeSidebar();
+            if (chip.id === 'sort-rating') {
+                filteredList = FilterService.sortByRating(allMovies);
+                title = "Top Rated Movies";
+            } else if (type === 'rating') {
+                filteredList = FilterService.filterByRating(allMovies, id);
+                title = (id === 'all') ? "All Ratings" : `Rated: ${id}`;
+            } else if (type === 'genre') {
+                filteredList = FilterService.filterByGenre(allMovies, id);
+                title = (id === 'all') ? "All Genres" : `Genre: ${chip.textContent}`;
+            }
+
+            FilterPanel.setActiveChip(chip);
+            updateUI(filteredList, title);
+            FilterPanel.toggle(filterContainer, overlay, false);
         });
 
-        // D. Search Functionality (Enter Key)
+        // C. Search Functionality
         searchInput.addEventListener('keypress', async (e) => {
             if (e.key === 'Enter') {
                 const query = searchInput.value.trim();
@@ -80,7 +77,7 @@ async function init() {
             }
         });
 
-        // E. Modal Opening (Event Delegation)
+        // D. Modal Opening (Event Delegation)
         movieGrid.addEventListener('click', async (event) => {
             const card = event.target.closest('.movie-card');
             if (!card) return;
@@ -89,13 +86,13 @@ async function init() {
             try {
                 const details = await MovieAPI.fetchMovieDetails(movieId);
                 renderModalContent(details, modal);
-                modal.showModal(); // Opens the <dialog>
+                modal.showModal(); 
             } catch (err) {
                 console.error("Modal failed to load:", err);
             }
         });
 
-        // F. Modal Closing
+        // E. Modal Closing
         if (closeModal) {
             closeModal.addEventListener('click', () => modal.close());
         }
@@ -111,6 +108,9 @@ function updateUI(moviesList, title) {
     if (bodyHeaderTitle) bodyHeaderTitle.textContent = title;
     if (movieCount) movieCount.textContent = `${moviesList.length} titles found`;
     
+    // Clear and re-render to trigger entrance animations
+    movieGrid.innerHTML = ''; 
+
     if (moviesList.length === 0) {
         movieGrid.innerHTML = '<p class="no-results">No movies match your criteria.</p>';
     } else {
@@ -118,19 +118,11 @@ function updateUI(moviesList, title) {
     }
 }
 
-function renderGenres(genres) {
-    filterContainer.innerHTML = `
-        <div class="sidebar-header">
-        </div>
-        <button class="filter-chip active-chip" data-id="all">All Movies</button>
-        ${genres.map(g => `<button class="filter-chip" data-id="${g.id}">${g.name}</button>`).join('')}
-    `;
-}
-
-function closeSidebar() {
-    filterContainer.classList.remove('active');
-    const overlay = document.querySelector('.sidebar-overlay');
-    if (overlay) overlay.classList.remove('active');
+function createOverlay() {
+    const ov = document.createElement('div');
+    ov.className = 'sidebar-overlay';
+    document.body.appendChild(ov);
+    return ov;
 }
 
 document.addEventListener('DOMContentLoaded', init);

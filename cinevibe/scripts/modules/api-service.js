@@ -23,12 +23,12 @@ export const MovieAPI = {
 
   async fetchMovieDetails(movieId) {
     try {
-      const response = await fetch(
-        `${BASE_URL}/movie/${movieId}?api_key=${API_KEY}&append_to_response=videos`
-      );
-      return await response.json();
+        const response = await fetch(
+            `${BASE_URL}/movie/${movieId}?api_key=${API_KEY}&append_to_response=videos,release_dates`
+        );
+        return await response.json();
     } catch (error) {
-      console.error("Error fetching details:", error);
+        console.error("Error fetching details:", error);
     }
   },
 
