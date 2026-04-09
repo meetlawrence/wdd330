@@ -56,13 +56,11 @@
             <div class="header-right">
                 <div class="search-container">
                     <input type="text" id="search-input" placeholder="Search for movies..." class="search-input">
-                    <button class="search-button" aria-label="Search">
-                        <svg class="icon">
-                            <use href="assets/icons/sprites.svg#icon-search"></use>
-                        </svg>
-                        <!--  -->
-                    </button>
+                    <svg class="search-icon">
+                        <use href="assets/icons/sprites.svg#icon-search"></use>
+                    </svg>
                 </div>
+                
                 <button class="filter-button" aria-label="Filter">
                     <svg class="icon">
                         <use href="assets/icons/sprites.svg#icon-filter"></use>
@@ -74,9 +72,9 @@
 
     <main>
         <div id="filter-container" class="filter-container">
-            <div class="sidebar-header" style="margin-bottom: 20px; display: flex; justify-content: space-between;">
+            <!-- <div class="sidebar-header" style="margin-bottom: 20px; display: flex; justify-content: space-between;">
                 <h3 style="color: white; margin: 0;">Genres</h3>
-            </div>
+            </div> -->
         </div>
 
         <section class="body-header">
@@ -89,12 +87,18 @@
             </div>
         </section>
 
-        <section>
+        <section class="disclaimer-container">
             <div class="disclaimer-card">
-                <svg class="icon">
-                    <use href="images/icons/sprites.svg#icon-disclaimer"></use>
+                <div class="disclaimer-header">
+                <svg class="icon-disclaimer">
+                    <use href="assets/icons/sprites.svg#icon-disclaimer"></use>
                 </svg>
-                <span>Disclaimer</span>
+                <span>Legal Notice</span>
+                </div>
+                <p>
+                CineVibe uses the TMDB API but is not endorsed or certified by TMDB. 
+                All movie-related data is credited to <a href="https://www.themoviedb.org/" target="_blank">The Movie Database</a>.
+                </p>
             </div>
         </section>
     </main>

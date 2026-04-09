@@ -9,73 +9,13 @@
         display: block;
     }
 
-    .menu-button {
-        display: none;
+    .logo-icon:hover {
+        transform: scale(1.1);
     }
-
 
     .header-container {
         flex-direction: row;
         padding: 1rem 1.5rem;
-    }
-
-    /* Reposition the dropdown content to sit flat in the header */
-    .dropdown-content {
-        position: static;
-        /* Removes the "floating" behavior */
-        display: flex;
-        /* Arranges items side-by-side */
-        flex-direction: row;
-        align-items: center;
-        gap: 1.5rem;
-        background: transparent !important;
-        border: none !important;
-        box-shadow: none;
-        opacity: 1;
-        transform: none;
-        width: auto;
-        padding: 0;
-        margin: 0;
-    }
-
-    /* Hide the Emojis, Descriptions, and Dividers */
-    .dropdown-emoji,
-    .dropdown-desc,
-    .dropdown-divider {
-        display: none;
-    }
-
-    /* Style the links as clean header menu items */
-    .dropdown-item {
-        padding: 0.5rem 0.25rem;
-        background: transparent !important;
-        /* Removes the light/dark hover background */
-    }
-
-    .dropdown-title {
-        font-size: 0.95rem;
-        font-weight: 600;
-        color: white;
-        /*  */
-        transition: color 0.3s ease;
-    }
-
-    /* Highlight effect on hover */
-    .dropdown-item:hover .dropdown-title {
-        text-decoration: underline;
-        text-underline-offset: 8px;
-    }
-
-    .dropdown-item.active {
-        background: none;
-        border: none;
-        border-radius: 0;
-        box-shadow: none;
-    }
-
-    .dropdown-item.active .dropdown-title {
-        color: #fbbf24;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
 
     /* Space out the header-right elements */
@@ -94,17 +34,30 @@
         margin-left: auto;
     }
 
-    .menu-dropdown {
-        order: 1;
+    .filter-button:hover {
+        background: var(--background-slate-800);
+        border-color: var(--primary-red-500);
+        color: white;
+        transform: translateY(-2px);
     }
 
-    #cart-button {
-        order: 2;
-    }
-
-    #theme-toggle {
-        order: 3;
+    .movie-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
     }
 
 
+    .footer-logo:hover .footer-logo-icon {
+        transform: rotate(360deg) scale(1.1);
+    }
+
+    .social-link:hover {
+        transform: scale(1.15) translateY(-4px);
+        background: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+    }
+
+    .footer-links li:hover {
+        transform: translateX(6px);
+    }
 }

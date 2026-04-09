@@ -16,7 +16,7 @@ export function createMovieCard(movie) {
       
       <img src="${posterPath}" alt="${movie.title}" loading="lazy">
       
-      <div class="card-info">
+      <div class="card-info movie-card">
         <h3>${movie.title}</h3>
         <div class="meta">
           <span class="rating">
